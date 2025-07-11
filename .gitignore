@@ -1,0 +1,4 @@
+data/*.csv
+data/*.tab
+weights/*.pt
+wandb/
