@@ -20,6 +20,64 @@ https://www.kaggle.com/virajbagal/ligflow-final-weights
 
 To train the model, make sure you have the datasets' csv file in the same directory as the code files.
 
+Environment Setup Guide
+macOS (M1/M2/M3/M4) Setup
+bash# 1. Create conda environment
+conda create -n molgpt python=3.12 -y
+conda activate molgpt
+
+# 2. Install conda packages (recommended)
+conda install -c conda-forge rdkit pandas numpy matplotlib seaborn tqdm -y
+
+# 3. Install PyTorch for Apple Silicon
+pip install torch torchvision torchaudio
+
+# 4. Install remaining packages
+pip install PyTDC wandb
+Linux with CUDA Setup
+bash# 1. Create conda environment
+conda create -n molgpt python=3.12 -y
+conda activate molgpt
+
+# 2. Install conda packages
+conda install -c conda-forge rdkit pandas numpy matplotlib seaborn tqdm -y
+
+# 3. Install PyTorch with CUDA
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# 4. Install remaining packages
+pip install PyTDC wandb
+Linux CPU-only Setup
+bash# 1. Create conda environment
+conda create -n molgpt python=3.12 -y
+conda activate molgpt
+
+# 2. Install conda packages
+conda install -c conda-forge rdkit pandas numpy matplotlib seaborn tqdm -y
+
+# 3. Install PyTorch CPU version
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+# 4. Install remaining packages
+pip install PyTDC wandb
+Simple requirements.txt (fallback)
+For pip-only installation (may have issues with RDKit):
+pandas
+numpy
+matplotlib
+seaborn
+tqdm
+PyTDC
+wandb
+torch
+Notes
+
+RDKit: Always install via conda when possible
+PyTorch: Version depends on your hardware (CPU/CUDA/Apple Silicon)
+argparse: Built into Python 3.12
+Test your installation with: python -c "import rdkit; import torch; print('Success!')"
+
+
 # メモ
 コードの動かし方
 python preprocessing.py --debug --output moses2_debug.csv
