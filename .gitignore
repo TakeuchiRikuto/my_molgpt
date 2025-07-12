@@ -2,3 +2,7 @@ data/*.csv
 data/*.tab
 weights/*.pt
 wandb/
+*.csv
+*.pkl
+*.h5
+__pycache__/
