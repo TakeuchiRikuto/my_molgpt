@@ -80,9 +80,14 @@ Test your installation with: python -c "import rdkit; import torch; print('Succe
 
 # メモ
 コードの動かし方
-python preprocessing.py --debug --output moses2_debug.csv
-python train/train.py --run_name debug_test --data_name moses2_debug --batch_size 32 --max_epochs 1 --num_props 0 --debug
+python preprocessing.py --debug --output moses2_debug.csv##これはしないcsvを別途ダウンロード
+
+
+
+python train/train.py --run_name  mose2_debug --data_name moses2_debug --batch_size 32 --max_epochs 1 --num_props 0 --debug
 python generate/generate.py --model_weight weights/debug_test.pt --data_name moses2_debug --csv_name moses_scaf_tpsa_temp0.1 --gen_size 1000 --batch_size 32
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121pip install PyTDC wandb
 
 python generate/generate.py \
   --model_weight weights/debug_test.pt \

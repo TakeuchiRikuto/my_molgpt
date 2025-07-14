@@ -160,7 +160,7 @@ if __name__ == '__main__':
                     # p = torch.tensor([c]).repeat(args.batch_size, 1).unsqueeze(1).to('cuda')    # for multiple conditions
                     #sca = torch.tensor([stoi[s] for s in regex.findall(j)], dtype=torch.long)[None,...].repeat(args.batch_size, 1).to('cuda')
                     sca = None
-                    y = sample(model, x, args.block_size, temperature=0.5, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
+                    y = sample(model, x, args.block_size, temperature=1.0, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
                     for gen_mol in y:
                             completion = ''.join([itos[int(i)] for i in gen_mol])
                             completion = completion.replace('<', '')
@@ -225,7 +225,7 @@ if __name__ == '__main__':
                         else:
                                 p = torch.tensor([c]).repeat(args.batch_size, 1).unsqueeze(1).to(device)    # for multiple conditions
                         sca = None
-                        y = sample(model, x, args.block_size, temperature=0.5, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
+                        y = sample(model, x, args.block_size, temperature=1.0, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
                         for gen_mol in y:
                                 completion = ''.join([itos[int(i)] for i in gen_mol])
                                 completion = completion.replace('<', '')
@@ -294,7 +294,7 @@ if __name__ == '__main__':
                     x = torch.tensor([stoi[s] for s in regex.findall(context)], dtype=torch.long)[None,...].repeat(args.batch_size, 1).to(device)
                     p = None
                     sca = torch.tensor([stoi[s] for s in regex.findall(j)], dtype=torch.long)[None,...].repeat(args.batch_size, 1).to(device)
-                    y = sample(model, x, args.block_size, temperature=0.5, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
+                    y = sample(model, x, args.block_size, temperature=1.0, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
                     for gen_mol in y:
                             completion = ''.join([itos[int(i)] for i in gen_mol])
                             completion = completion.replace('<', '')
@@ -364,7 +364,7 @@ if __name__ == '__main__':
                         else:
                                 p = torch.tensor([c]).repeat(args.batch_size, 1).unsqueeze(1).to(device)    # for multiple conditions
                         sca = torch.tensor([stoi[s] for s in regex.findall(j)], dtype=torch.long)[None,...].repeat(args.batch_size, 1).to(device)
-                        y = sample(model, x, args.block_size, temperature=0.5, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
+                        y = sample(model, x, args.block_size, temperature=1.0, sample=True, top_k=None, prop = p, scaffold = sca)   # 0.7 for guacamol
                         for gen_mol in y:
                                 completion = ''.join([itos[int(i)] for i in gen_mol])
                                 completion = completion.replace('<', '')

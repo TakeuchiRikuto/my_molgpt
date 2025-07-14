@@ -128,3 +128,36 @@ if __name__ == '__main__':
     data = preprocess_moses(args.output, args.debug)
     print("\nPreprocessing completed!")
     print("You can now use the CSV file in your training and generation scripts.")
+    """
+    その後にこれを実行
+# 元のmoses2.csvに直接TPSAを追加
+python -c "
+import pandas as pd
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+import time
+
+print('Loading moses2.csv...')
+df = pd.read_csv('moses2.csv')
+print(f'Loaded {len(df)} molecules')
+
+def calc_tpsa(smiles):
+    mol = Chem.MolFromSmiles(smiles)
+    if mol is None:
+        return None
+    return Descriptors.TPSA(mol)
+
+print('Calculating TPSA...')
+start_time = time.time()
+df['tpsa'] = df['smiles'].apply(calc_tpsa)
+end_time = time.time()
+
+print(f'TPSA calculation completed in {end_time - start_time:.2f} seconds')
+print(f'TPSA stats: min={df[\"tpsa\"].min():.2f}, max={df[\"tpsa\"].max():.2f}, mean={df[\"tpsa\"].mean():.2f}')
+
+print('Saving back to moses2.csv...')
+df.to_csv('moses2.csv', index=False)
+print('Done! moses2.csv now includes TPSA column.')
+"
+
+"""
